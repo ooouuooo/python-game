@@ -1,0 +1,75 @@
+import tkinter as tk
+from PIL import Image, ImageTk
+
+root = tk.Tk()
+root.title("💗 미소녀 연애 시뮬레이터 💗")
+root.geometry("800x600")
+
+# 시나리오 데이터
+scenario = [
+    {"bg": "school.png", "char": "haruka.png", "text": "하루카: 안녕! 전학생이지?"},
+    {"bg": "school.png", "char": "haruka.png", "text": "하루카: 나는 하루카야. 앞으로 잘 부탁해!"},
+    {"bg": "school.png", "char": "haruka.png", "text": "당신은 어떻게 대답할까?",
+     "choices": [("반갑다고 한다", "하루카: 와! 기뻐! ❤️"), ("그냥 고개만 끄덕인다", "하루카: ...어, 그래.😢")]}
+]
+
+scene_index = 0
+
+# 배경
+bg_img = ImageTk.PhotoImage(Image.open(scenario[0]["bg"]).resize((800, 600)))
+bg_label = tk.Label(root, image=bg_img)
+bg_label.place(x=0, y=0)
+
+# 캐릭터
+char_img = ImageTk.PhotoImage(Image.open(scenario[0]["char"]).resize((300, 400)))
+char_label = tk.Label(root, image=char_img, bg="#ffffff")
+char_label.place(x=250, y=150)
+
+# 대화 텍스트
+text_label = tk.Label(root, text=scenario[0]["text"], font=("Arial", 16), bg="white", wraplength=700)
+text_label.place(x=50, y=500)
+
+# 선택지 버튼
+btn1 = tk.Button(root, text="다음 ▶", font=("Arial", 12))
+btn2 = tk.Button(root, text="", font=("Arial", 12))
+
+def next_scene():
+    global scene_index
+    scene_index += 1
+    if scene_index >= len(scenario):
+        text_label.config(text="THE END 💞")
+        btn1.place_forget()
+        btn2.place_forget()
+        return
+    
+    scene = scenario[scene_index]
+    text_label.config(text=scene["text"])
+    
+    # 배경, 캐릭터 변경
+    new_bg = ImageTk.PhotoImage(Image.open(scene["bg"]).resize((800, 600)))
+    bg_label.config(image=new_bg)
+    bg_label.image = new_bg
+
+    new_char = ImageTk.PhotoImage(Image.open(scene["char"]).resize((300, 400)))
+    char_label.config(image=new_char)
+    char_label.image = new_char
+
+    # 선택지 처리
+    if "choices" in scene:
+        btn1.config(text=scene["choices"][0][0], command=lambda: show_result(scene["choices"][0][1]))
+        btn2.config(text=scene["choices"][1][0], command=lambda: show_result(scene["choices"][1][1]))
+        btn1.place(x=100, y=550)
+        btn2.place(x=300, y=550)
+    else:
+        btn1.config(text="다음 ▶", command=next_scene)
+        btn2.place_forget()
+
+def show_result(result_text):
+    text_label.config(text=result_text)
+    btn1.config(text="다음 ▶", command=next_scene)
+    btn2.place_forget()
+
+btn1.config(command=next_scene)
+btn1.place(x=350, y=550)
+
+root.mainloop()
