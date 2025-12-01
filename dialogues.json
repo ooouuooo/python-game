@@ -1042,7 +1042,7 @@
               ["나","어 이제 시작하네"],
               ["하루카","있잖아…"]]
     },
-    "choices":["불꽃이 터지다","ending_real_haruka",{"haruka":20}]
+    "choices":[["불꽃이 터지다","ending_real_haruka",{"haruka":20}]]
 
   },
   "ending_real_haruka":{
