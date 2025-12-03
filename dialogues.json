@@ -450,7 +450,7 @@
 
       ]
     },
-    "choices": [["‘함께 웃으며 노래방을 간다.’", "in_shfoqkd", {"yuna": 2}]]
+    "choices": [["‘함께 웃으며 노래방을 간다.’", "in_shfoqkd", {"yuna": 3}]]
   },
   "in_shfoqkd": {
     "bg" : "shfoqkd",
@@ -480,7 +480,7 @@
       ["나", "(작게 중얼거리며) 그 말, 진짜 믿어도 되겠지..."]
     ]
     },
-    "choices": [["‘재밌게 노래를 부르고 집에간다’", "sleep_end", {"yuna": 2}]]
+    "choices": [["‘재밌게 노래를 부르고 집에간다’", "sleep_end", {"yuna": 4}]]
   },
   "no_library": {
     "bg": "street",
@@ -664,7 +664,7 @@
       ["유나", "ㅋㅋㅋ 좋아! 내일도 놀자!"]
     ]
   },
-  "choices": [["폰을 끄고 잔다", "next_day", {"yuna": 1}]]
+  "choices": [["폰을 끄고 잔다", "next_day", {"yuna": 4}]]
 },
 "phone_chat_areum": {
   "bg": "None",
